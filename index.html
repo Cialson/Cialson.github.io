@@ -1,190 +1,31 @@
 <!doctype html>
 <!--
-  Portfolio de Nicolas Brault — page statique unique, sans build.
-
-  Ajouter la version anglaise :
-    1. Copier ce fichier dans en/index.html.
-    2. Traduire les textes (aucun texte visible n'est défini dans le CSS ou le JS).
-    3. Préfixer les chemins par "../" (assets/… → ../assets/…).
-    4. Mettre lang="en", décommenter les <link rel="alternate"> ci-dessous
-       et le sélecteur de langue (.lang-switch) dans les deux fichiers.
+  Portfolio de Nicolas Brault — version anglaise (par défaut).
+  La version française est fr/index.html : toute modification de contenu
+  doit être reportée dans les deux fichiers. Styles partagés : assets/style.css.
 -->
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nicolas Brault — Portfolio</title>
-<meta name="description" content="Portfolio de Nicolas Brault, élève ingénieur à IMT Atlantique : agents IA, Machine Learning et cybersécurité. Recherche de stage de fin d'études à partir d'avril 2027.">
+<meta name="description" content="Portfolio of Nicolas Brault, engineering student at IMT Atlantique: AI agents, Machine Learning and cybersecurity. Looking for a final-year internship starting April 2027.">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="fr_FR">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
 <meta property="og:url" content="https://cialson.github.io/">
-<meta property="og:title" content="Nicolas Brault — Agents IA & Cybersécurité">
-<meta property="og:description" content="Projets en agents IA, Machine Learning et cybersécurité.">
+<meta property="og:title" content="Nicolas Brault — AI Agents & Cybersecurity">
+<meta property="og:description" content="Projects in AI agents, Machine Learning and cybersecurity.">
 <link rel="canonical" href="https://cialson.github.io/">
-<link rel="alternate" hreflang="fr" href="https://cialson.github.io/">
-<!-- <link rel="alternate" hreflang="en" href="https://cialson.github.io/en/"> -->
+<link rel="alternate" hreflang="en" href="https://cialson.github.io/">
+<link rel="alternate" hreflang="fr" href="https://cialson.github.io/fr/">
+<link rel="alternate" hreflang="x-default" href="https://cialson.github.io/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b5fb3'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3ENB%3C/text%3E%3C/svg%3E">
 <script>
   // Applique le thème choisi avant l'affichage pour éviter un flash.
   try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
-<style>
-  :root {
-    color-scheme: light;
-    --bg: #f7f7f5;
-    --surface: #ffffff;
-    --media-bg: #eef0f2;
-    --text: #1b1f24;
-    --muted: #59626d;
-    --border: #e1e4e8;
-    --accent: #0b5fb3;
-    --accent-soft: #e6f0fa;
-    --tag-bg: #f0f2f4;
-    --ok: #1d7a46;
-    --ok-soft: #e5f4ec;
-    --warn: #8a5a00;
-    --warn-soft: #fbf1dc;
-    --shadow: 0 1px 2px rgba(16, 24, 40, .05);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      color-scheme: dark;
-      --bg: #0f1215;
-      --surface: #171b20;
-      --media-bg: #1f252c;
-      --text: #e6e9ec;
-      --muted: #9ba5af;
-      --border: #2a3139;
-      --accent: #6fb2ff;
-      --accent-soft: #15283d;
-      --tag-bg: #222930;
-      --ok: #6fd39b;
-      --ok-soft: #15291f;
-      --warn: #f0c26b;
-      --warn-soft: #2e2512;
-      --shadow: none;
-    }
-  }
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-    --bg: #0f1215;
-    --surface: #171b20;
-    --media-bg: #1f252c;
-    --text: #e6e9ec;
-    --muted: #9ba5af;
-    --border: #2a3139;
-    --accent: #6fb2ff;
-    --accent-soft: #15283d;
-    --tag-bg: #222930;
-    --ok: #6fd39b;
-    --ok-soft: #15291f;
-    --warn: #f0c26b;
-    --warn-soft: #2e2512;
-    --shadow: none;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  }
-  a { color: var(--accent); }
-  img { display: block; max-width: 100%; }
-  h1, h2, h3 { line-height: 1.25; margin: 0; }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
-  @media (min-width: 720px) { .wrap { padding: 0 32px; } }
-
-  /* En-tête */
-  .hero { padding: 56px 0 40px; border-bottom: 1px solid var(--border); }
-  .hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
-  .hero h1 { font-size: clamp(2rem, 5vw, 2.6rem); letter-spacing: -.02em; }
-  .role { margin: 4px 0 0; font-size: 1.15rem; font-weight: 600; color: var(--accent); }
-  .intro { margin: 16px 0 0; max-width: 62ch; color: var(--muted); }
-  .links { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; padding: 0; list-style: none; }
-  .links a {
-    display: inline-block; padding: 7px 14px; border: 1px solid var(--border); border-radius: 999px;
-    background: var(--surface); color: var(--text); text-decoration: none; font-size: .95rem; font-weight: 500;
-  }
-  .links a:hover { border-color: var(--accent); color: var(--accent); }
-  .links a.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); }
-  .links a.primary:hover { opacity: .9; color: var(--surface); }
-  .tools { display: flex; gap: 8px; align-items: center; }
-  .theme-toggle {
-    width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
-    background: var(--surface); color: var(--text); cursor: pointer; display: grid; place-items: center;
-  }
-  .theme-toggle:hover { border-color: var(--accent); }
-  .theme-toggle svg { width: 18px; height: 18px; }
-  .lang-switch { font-size: .9rem; font-weight: 600; text-decoration: none; }
-
-  /* Sections */
-  section { padding: 48px 0 8px; }
-  .section-head { margin-bottom: 24px; }
-  .section-head h2 { font-size: 1.5rem; letter-spacing: -.01em; }
-  .section-head p { margin: 4px 0 0; color: var(--muted); }
-
-  /* Cartes projet */
-  .project {
-    display: grid; gap: 20px; padding: 20px;
-    background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow);
-  }
-  .project + .project { margin-top: 20px; }
-  @media (min-width: 820px) {
-    .project.has-media { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); padding: 24px; gap: 28px; }
-    .project.has-media.compact { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
-  }
-  .meta { margin: 0; font-size: .9rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; }
-  .meta .when { font-weight: 600; color: var(--text); }
-  .project h3 { margin-top: 6px; font-size: 1.2rem; }
-  .project p.desc { margin: 10px 0 0; }
-  .badge { display: inline-block; padding: 1px 9px; border-radius: 999px; font-size: .78rem; font-weight: 600; }
-  .badge.wip { background: var(--warn-soft); color: var(--warn); }
-  .results { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 0; padding: 0; list-style: none; }
-  .results li { padding: 8px 12px; border-radius: 10px; background: var(--accent-soft); font-size: .9rem; }
-  .results strong { display: block; font-size: 1.25rem; color: var(--accent); line-height: 1.2; }
-  .results-note { margin: 6px 0 0; font-size: .85rem; color: var(--muted); }
-  .tags-label { margin: 14px 0 0; font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
-  .tags-label + .tags { margin-top: 6px; }
-  .tags li { padding: 2px 9px; border-radius: 6px; background: var(--tag-bg); font-size: .82rem; }
-  .footnotes { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; margin: 16px 0 0; font-size: .9rem; }
-  .no-ai { color: var(--ok); background: var(--ok-soft); padding: 2px 9px; border-radius: 6px; font-size: .82rem; font-weight: 500; }
-  .repo { font-weight: 600; text-decoration: none; }
-  .repo:hover { text-decoration: underline; }
-
-  /* Visuels : cliquer ouvre l'image en grand */
-  .media { display: flex; gap: 10px; min-width: 0; }
-  .media a {
-    flex: 1 1 0; min-width: 0; display: block;
-    background: var(--media-bg); border-radius: 10px; overflow: hidden; padding: 8px;
-  }
-  .media img { width: 100%; height: 100%; object-fit: contain; border-radius: 4px; }
-  .media.row { height: 340px; }
-  .media.row a { height: 100%; }
-  .media.stack { flex-direction: column; }
-  .media.stack a { flex: 0 0 auto; }
-  .media.stack img { height: auto; }
-  .compact .media.row { height: 260px; }
-  @media (max-width: 819px) { .media.row { height: 300px; } }
-
-  /* Frise des autres projets */
-  .timeline { list-style: none; margin: 0; padding: 0; }
-  .timeline > li { display: grid; gap: 8px; }
-  .timeline > li + li { margin-top: 20px; }
-  .timeline .year { font-size: 1.1rem; font-weight: 700; color: var(--accent); }
-  @media (min-width: 820px) {
-    .timeline > li { grid-template-columns: 72px minmax(0, 1fr); gap: 16px; }
-    .timeline .year { padding-top: 22px; }
-  }
-
-  footer { margin-top: 56px; padding: 24px 0 40px; border-top: 1px solid var(--border); color: var(--muted); font-size: .9rem; }
-  footer p { margin: 0; }
-
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
@@ -193,18 +34,18 @@
     <div class="hero-top">
       <div>
         <h1>Nicolas Brault</h1>
-        <p class="role">Élève ingénieur – Agents IA &amp; Cybersécurité</p>
+        <p class="role">Engineering Student – AI Agents &amp; Cybersecurity</p>
       </div>
       <div class="tools">
-        <!-- <a class="lang-switch" href="en/" hreflang="en" lang="en">EN</a> -->
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Basculer entre thème clair et sombre" title="Thème clair / sombre">
+        <a class="lang-switch" href="fr/index.html" hreflang="fr" lang="fr" aria-label="Version française">FR</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light and dark theme" title="Light / dark theme">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
         </button>
       </div>
     </div>
-    <p class="intro">Élève ingénieur en 3<sup>e</sup> année à IMT Atlantique (cybersécurité, deep learning, systèmes distribués). Je recherche un stage de fin d'études de 6&nbsp;mois à partir d'avril 2027 en Machine Learning, agents IA / LLM et cybersécurité.</p>
+    <p class="intro">Third-year engineering student at IMT Atlantique (cybersecurity, deep learning, distributed systems). I am looking for a 6-month final-year internship starting in April 2027 in Machine Learning, AI / LLM agents and cybersecurity.</p>
     <ul class="links">
-      <li><a class="primary" href="assets/CV_Nicolas_Brault.pdf">CV (PDF)</a></li>
+      <li><a class="primary" href="assets/CV_Nicolas_Brault.pdf">Résumé (PDF, in French)</a></li>
       <li><a href="mailto:nicolas.brault@imt-atlantique.net">nicolas.brault@imt-atlantique.net</a></li>
       <li><a href="https://www.linkedin.com/in/nicolas-brault-ai" rel="noopener">LinkedIn</a></li>
       <li><a href="https://github.com/Cialson" rel="noopener">GitHub</a></li>
@@ -214,121 +55,144 @@
 
 <main class="wrap">
 
-  <section id="projets-phares" aria-labelledby="titre-phares">
+  <section id="featured" aria-labelledby="featured-title">
     <div class="section-head">
-      <h2 id="titre-phares">Projets phares</h2>
-      <p>IA agentique, Machine Learning et cybersécurité.</p>
+      <h2 id="featured-title">Featured projects</h2>
+      <p>Agentic AI, Machine Learning and cybersecurity.</p>
     </div>
 
     <article class="project has-media">
       <div>
-        <p class="meta"><span class="when">2025 – 2026</span><span>CNIL · Ingénieur chercheur cybersécurité</span></p>
-        <h3>Détection d'objets connectés de surveillance par analyse du trafic réseau</h3>
-        <p class="desc">Identification d'appareils IoT de surveillance par apprentissage automatique à partir de leur trafic réseau. Mené en deux temps (6&nbsp;mois au total) : projet IMT Atlantique en partenariat avec la CNIL en 2025, puis stage à la CNIL à l'été 2026. Produit final : une application mobile connectée à un Raspberry Pi, qui analyse les réseaux Wi-Fi (ARP spoofing, mode moniteur), Bluetooth et BLE.</p>
+        <p class="meta"><span class="when">2025 – 2026</span><span>CNIL (French data protection authority) · Cybersecurity Research Engineer</span></p>
+        <h3>Detecting surveillance IoT devices through network traffic analysis</h3>
+        <p class="desc">Machine-learning identification of surveillance IoT devices from their network traffic. Carried out in two phases (6&nbsp;months in total): an IMT Atlantique project in partnership with the CNIL in 2025, then an internship at the CNIL in summer 2026. Final product: a mobile app connected to a Raspberry Pi that analyses Wi-Fi (ARP spoofing, monitor mode), Bluetooth and BLE networks.</p>
         <ul class="results">
-          <li><strong>93,3&nbsp;%</strong>d'accuracy</li>
-          <li><strong>91,4&nbsp;%</strong>de macro-F1</li>
+          <li><strong>93.3%</strong>accuracy</li>
+          <li><strong>91.4%</strong>macro-F1</li>
         </ul>
-        <p class="results-note">Sur des appareils inconnus du modèle (validation croisée k-fold par groupes).</p>
+        <p class="results-note">On devices unseen by the model (grouped k-fold cross-validation).</p>
         <ul class="tags">
           <li>Python</li><li>PyTorch</li><li>Random Forest</li><li>CNN</li><li>LSTM</li><li>Wireshark</li><li>PostgreSQL</li><li>Raspberry Pi</li><li>Wi-Fi / Bluetooth / BLE</li>
         </ul>
       </div>
       <div class="media row">
-        <a href="assets/cnil-raspberry.webp"><img src="assets/cnil-raspberry.webp" width="900" height="1200" loading="lazy" alt="Sonde d'analyse : Raspberry Pi dans son boîtier, relié par USB à deux adaptateurs radio équipés d'antennes."></a>
-        <a href="assets/cnil-appli.webp"><img src="assets/cnil-appli.webp" width="628" height="1300" loading="lazy" alt="Application mobile « Network Sniffer » connectée au Raspberry Pi : capture Wi-Fi de 10 minutes et appareils du réseau local classés selon leur probabilité d'être des appareils de surveillance."></a>
+        <a href="assets/cnil-raspberry.webp"><img src="assets/cnil-raspberry.webp" width="900" height="1200" loading="lazy" alt="Analysis probe: a Raspberry Pi in its case, connected over USB to two radio adapters fitted with antennas."></a>
+        <a href="assets/cnil-appli.webp"><img src="assets/cnil-appli.webp" width="628" height="1300" loading="lazy" alt="“Network Sniffer” mobile app connected to the Raspberry Pi: a 10-minute Wi-Fi capture, with local network devices ranked by their likelihood of being surveillance devices."></a>
       </div>
     </article>
 
     <article class="project">
       <!-- Visuels à venir : ajouter la classe has-media et un bloc .media comme pour les autres projets. -->
       <div>
-        <p class="meta"><span class="when">Sept. 2026 – févr. 2027</span><span class="badge wip">En cours</span></p>
-        <h3>Plateforme multi-agent pour l'apprentissage</h3>
-        <p class="desc">Refonte de l'architecture d'une plateforme pédagogique GraphRAG existante (chatbot, tutorat intelligent, recommandation). L'objectif est de la transformer en agents autonomes qui coopèrent via MCP et A2A. Projet démarré en septembre 2026, fin prévue en février 2027.</p>
-        <p class="tags-label">Stack existante</p>
+        <p class="meta"><span class="when">Sept. 2026 – Feb. 2027</span><span class="badge wip">In progress</span></p>
+        <h3>Multi-agent learning platform</h3>
+        <p class="desc">Redesigning the architecture of an existing GraphRAG-based educational platform (chatbot, intelligent tutoring, recommendation). The goal is to turn it into autonomous agents that cooperate via MCP and A2A. Started in September 2026, expected to end in February 2027.</p>
+        <p class="tags-label">Existing stack</p>
         <ul class="tags">
-          <li>Mistral 7B</li><li>Ollama (4 GPU)</li><li>LangGraph</li><li>Neo4j (graphe de connaissances + recherche vectorielle)</li><li>FastAPI</li><li>MongoDB</li><li>Docker</li>
+          <li>Mistral 7B</li><li>Ollama (4 GPUs)</li><li>LangGraph</li><li>Neo4j (knowledge graph + vector search)</li><li>FastAPI</li><li>MongoDB</li><li>Docker</li>
         </ul>
-        <p class="tags-label">Architecture visée</p>
+        <p class="tags-label">Target architecture</p>
         <ul class="tags">
-          <li>Agents autonomes</li><li>MCP</li><li>A2A</li>
+          <li>Autonomous agents</li><li>MCP</li><li>A2A</li>
         </ul>
       </div>
     </article>
 
     <article class="project has-media">
       <div>
-        <p class="meta"><span class="when">2026</span><span>Projet personnel</span><span class="badge wip">En cours</span></p>
-        <h3>Automatisation agentique avec n8n et Telegram</h3>
-        <p class="desc">Assistant personnel piloté en langage naturel depuis Telegram : un routeur aiguille chaque message vers le bon workflow (agenda, synthèse quotidienne de l'actualité, récap des marchés, veille de stages, offres en favoris). Un agent Gemini doté d'une mémoire et d'outils lit mon agenda et m'envoie chaque matin mon premier cours. La première version s'appuyait sur un LLM local (Ollama) pour résumer les performances d'un portefeuille financier.</p>
+        <p class="meta"><span class="when">2026</span><span>Personal project</span><span class="badge wip">In progress</span></p>
+        <h3>Agentic automation with n8n and Telegram</h3>
+        <p class="desc">Personal assistant controlled in natural language from Telegram: a router dispatches each message to the right workflow (calendar, daily news digest, market recap, internship watch, saved offers). A Gemini agent with memory and tools reads my calendar and sends me my first class every morning. The first version relied on a local LLM (Ollama) to summarise the performance of a financial portfolio.</p>
         <ul class="tags">
-          <li>n8n</li><li>Agents IA</li><li>Gemini</li><li>Ollama</li><li>Telegram</li><li>Google Agenda</li><li>Google Sheets</li>
+          <li>n8n</li><li>AI agents</li><li>Gemini</li><li>Ollama</li><li>Telegram</li><li>Google Calendar</li><li>Google Sheets</li>
         </ul>
       </div>
       <div class="media stack">
-        <a href="assets/n8n-agent-agenda.webp"><img src="assets/n8n-agent-agenda.webp" width="702" height="547" loading="lazy" alt="Workflows n8n : envoi du premier cours chaque matin à 7 h 45, et agent « Agenda Agent » déclenché par Telegram, relié à un modèle Gemini avec modèle de secours, à une mémoire et à deux outils de lecture d'agenda."></a>
-        <a href="assets/n8n-routeur-telegram.webp"><img src="assets/n8n-routeur-telegram.webp" width="776" height="586" loading="lazy" alt="Workflow n8n de routage : un déclencheur Telegram aiguille les messages vers les sous-workflows agenda, récap actualités, récap marchés, veille de stages et gestion des favoris dans Google Sheets."></a>
+        <a href="assets/n8n-agent-agenda.webp"><img src="assets/n8n-agent-agenda.webp" width="702" height="547" loading="lazy" alt="n8n workflows: the first class of the day sent every morning at 7:45, and an “Agenda Agent” triggered from Telegram, connected to a Gemini model with a fallback model, a memory and two calendar-reading tools."></a>
       </div>
     </article>
 
     <article class="project has-media">
       <div>
-        <p class="meta"><span class="when">Novembre 2024</span><span>Projet personnel</span></p>
-        <h3>AI Prey-Predator : neuroévolution proies / prédateurs</h3>
-        <p class="desc">Simulation d'un écosystème où proies et prédateurs sont pilotés par de petits réseaux de neurones PyTorch. Aucune rétropropagation ni fonction de fitness explicite : la sélection est naturelle. Les individus qui survivent et accumulent assez d'énergie transmettent les poids de leur réseau à leurs descendants, avec des mutations aléatoires.</p>
+        <p class="meta"><span class="when">2021</span><span>Personal project</span></p>
+        <h3>Neural networks learning to play Snake and the Chrome Dino game</h3>
+        <p class="desc">Neuroevolution training of neural networks to play Snake and the Google Chrome dinosaur game, both recreated in Python with Pygame. In each generation, a whole population plays at the same time (over 300 snakes, dozens of dinosaurs) and the best individuals pass their genes on to the next generation. The display tracks the generation number and how many individuals are still alive in real time.</p>
         <ul class="tags">
-          <li>Python</li><li>PyTorch</li><li>NumPy</li><li>Pygame</li><li>Neuroévolution</li><li>Algorithme génétique</li>
+          <li>Python</li><li>Pygame</li><li>Neural networks</li><li>Neuroevolution</li>
         </ul>
-        <div class="footnotes">
-          <span class="no-ai">Réalisé sans IA générative</span>
-          <a class="repo" href="https://github.com/Cialson/AI-Prey-Predator" rel="noopener">Dépôt GitHub →</a>
-        </div>
+        <div class="footnotes"><span class="no-ai">Built without generative AI</span></div>
       </div>
-      <div class="media stack">
-        <a href="assets/prey-predator.webp"><img src="assets/prey-predator.webp" width="1195" height="725" loading="lazy" alt="Simulation en cours : proies en vert et prédateurs en rouge autour d'une zone fertile blanche, avec le décompte de 24 prédateurs et 36 proies."></a>
+      <div class="media videos">
+        <figure>
+          <video src="assets/nn-snake.mp4" poster="assets/nn-snake.webp" width="424" height="460" autoplay muted loop playsinline preload="metadata" aria-label="Silent video: hundreds of snakes train at the same time on the same grid; the counter shows 310 snakes alive in generation 39, then the population shrinks to the last survivor."></video>
+          <figcaption>Snake · generation 39</figcaption>
+        </figure>
+        <figure>
+          <video src="assets/nn-dino.mp4" poster="assets/nn-dino.webp" width="424" height="400" autoplay muted loop playsinline preload="metadata" aria-label="Silent video: dozens of dinosaurs jump over obstacles at the same time, with lines linking them to the next obstacle; the counter shows 42 dinosaurs alive in generation 21."></video>
+          <figcaption>Chrome Dino · generation 21</figcaption>
+        </figure>
       </div>
     </article>
   </section>
 
-  <section id="autres-projets" aria-labelledby="titre-autres">
+  <section id="other-projects" aria-labelledby="other-title">
     <div class="section-head">
-      <h2 id="titre-autres">Autres projets</h2>
+      <h2 id="other-title">Other projects</h2>
     </div>
 
     <ol class="timeline">
       <li>
         <span class="year">2024</span>
-        <article class="project has-media compact">
-          <div>
-            <p class="meta"><span class="when">Octobre 2024</span><span>Projet personnel</span></p>
-            <h3>Genetic AI Evolution</h3>
-            <p class="desc">Simulation d'évolution artificielle : chaque individu possède un génome (couleur, taille, vitesse et poids d'un réseau de neurones) transmis avec mutations à ses descendants. Sans fonction de fitness : seuls les individus qui survivent et accumulent assez d'énergie se reproduisent.</p>
-            <ul class="tags"><li>Python</li><li>PyTorch</li><li>NumPy</li><li>Pygame</li><li>Neuroévolution</li></ul>
-            <div class="footnotes">
-              <span class="no-ai">Réalisé sans IA générative</span>
-              <a class="repo" href="https://github.com/Cialson/Genetic-AI-Evolution" rel="noopener">Dépôt GitHub →</a>
+        <div class="year-projects">
+          <article class="project has-media compact">
+            <div>
+              <p class="meta"><span class="when">November 2024</span><span>Personal project</span></p>
+              <h3>AI Prey-Predator: prey / predator neuroevolution</h3>
+              <p class="desc">Simulation of an ecosystem where prey and predators are driven by small PyTorch neural networks. No backpropagation and no explicit fitness function: selection is natural. Individuals that survive and gather enough energy pass their network weights on to their offspring, with random mutations.</p>
+              <ul class="tags">
+                <li>Python</li><li>PyTorch</li><li>NumPy</li><li>Pygame</li><li>Neuroevolution</li><li>Genetic algorithm</li>
+              </ul>
+              <div class="footnotes">
+                <span class="no-ai">Built without generative AI</span>
+                <a class="repo" href="https://github.com/Cialson/AI-Prey-Predator" rel="noopener">GitHub repository →</a>
+              </div>
             </div>
-          </div>
-          <div class="media stack">
-            <a href="assets/genetic-evolution.webp"><img src="assets/genetic-evolution.webp" width="1192" height="727" loading="lazy" alt="Simulation d'évolution : individus de couleurs et de tailles variées et nourriture autour d'une zone fertile blanche."></a>
-          </div>
-        </article>
+            <div class="media stack">
+              <a href="assets/prey-predator.webp"><img src="assets/prey-predator.webp" width="1195" height="725" loading="lazy" alt="Running simulation: prey in green and predators in red around a white fertile area, with a count of 24 predators and 36 prey."></a>
+            </div>
+          </article>
+
+          <article class="project has-media compact">
+            <div>
+              <p class="meta"><span class="when">October 2024</span><span>Personal project</span></p>
+              <h3>Genetic AI Evolution</h3>
+              <p class="desc">Artificial evolution simulation: each individual has a genome (colour, size, speed and neural-network weights) passed on with mutations to its offspring. No fitness function: only individuals that survive and gather enough energy reproduce.</p>
+              <ul class="tags"><li>Python</li><li>PyTorch</li><li>NumPy</li><li>Pygame</li><li>Neuroevolution</li></ul>
+              <div class="footnotes">
+                <span class="no-ai">Built without generative AI</span>
+                <a class="repo" href="https://github.com/Cialson/Genetic-AI-Evolution" rel="noopener">GitHub repository →</a>
+              </div>
+            </div>
+            <div class="media stack">
+              <a href="assets/genetic-evolution.webp"><img src="assets/genetic-evolution.webp" width="1192" height="727" loading="lazy" alt="Evolution simulation: individuals of various colours and sizes and food around a white fertile area."></a>
+            </div>
+          </article>
+        </div>
       </li>
 
       <li>
         <span class="year">2023</span>
         <article class="project has-media compact">
           <div>
-            <p class="meta"><span class="when">2023</span><span>Projet personnel</span></p>
-            <h3>Applications mobiles Android</h3>
-            <p class="desc">Plusieurs applications développées sous Android Studio : jeux d'arcade, entraînement au calcul mental et flash cards. Elles ont été publiées sur le Google Play Store, puis retirées faute de mise à jour de leurs politiques de confidentialité.</p>
+            <p class="meta"><span class="when">2023</span><span>Personal project</span></p>
+            <h3>Android mobile apps</h3>
+            <p class="desc">Several apps built with Android Studio: arcade games, mental-arithmetic training and flash cards. They were published on the Google Play Store, then removed because their privacy policies had not been updated.</p>
             <ul class="tags"><li>Java</li><li>XML</li><li>Android Studio</li><li>Google Play</li></ul>
-            <div class="footnotes"><span class="no-ai">Réalisé sans IA générative</span></div>
+            <div class="footnotes"><span class="no-ai">Built without generative AI</span></div>
           </div>
           <div class="media row">
-            <a href="assets/android-flappy.webp"><img src="assets/android-flappy.webp" width="616" height="1300" loading="lazy" alt="Jeu « Flappy Covi » : un oiseau doit passer entre des tuyaux décorés de virus, avec un panneau de distanciation et un score de 1."></a>
-            <a href="assets/android-calcul-mental.webp"><img src="assets/android-calcul-mental.webp" width="616" height="1300" loading="lazy" alt="Application de calcul mental : choix du niveau d'addition et statistiques (80 calculs, 85 % de réussite, temps moyen)."></a>
+            <a href="assets/android-flappy.webp"><img src="assets/android-flappy.webp" width="616" height="1300" loading="lazy" alt="“Flappy Covi” game: a bird flies between pipes decorated with viruses, next to a social-distancing sign, with a score of 1."></a>
+            <a href="assets/android-calcul-mental.webp"><img src="assets/android-calcul-mental.webp" width="616" height="1300" loading="lazy" alt="Mental-arithmetic app: addition level selection and statistics (80 calculations, 85% success rate, average time)."></a>
           </div>
         </article>
       </li>
@@ -337,17 +201,17 @@
         <span class="year">2022</span>
         <article class="project has-media compact">
           <div>
-            <p class="meta"><span class="when">2022</span><span>Classe préparatoire</span></p>
-            <h3>Site web de la classe PCSI 3</h3>
-            <p class="desc">Site de présentation de ma classe de prépa PCSI 3 au lycée Sainte-Geneviève (Versailles), conçu et réalisé seul en tant que responsable du projet.</p>
+            <p class="meta"><span class="when">2022</span><span>Preparatory class (CPGE)</span></p>
+            <h3>PCSI 3 class website</h3>
+            <p class="desc">Showcase website for my PCSI 3 preparatory class at Lycée Sainte-Geneviève (Versailles), designed and built on my own as project lead.</p>
             <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
             <div class="footnotes">
-              <span class="no-ai">Réalisé sans IA générative</span>
-              <a class="repo" href="https://github.com/Cialson/Site-Web-Piston-3" rel="noopener">Dépôt GitHub →</a>
+              <span class="no-ai">Built without generative AI</span>
+              <a class="repo" href="https://github.com/Cialson/Site-Web-Piston-3" rel="noopener">GitHub repository →</a>
             </div>
           </div>
           <div class="media stack">
-            <a href="assets/site-p3.webp"><img src="assets/site-p3.webp" width="1200" height="406" loading="lazy" alt="Bannière du site : photo du lycée Sainte-Geneviève, menu de navigation et titre « La vie à Ginette en P3 »."></a>
+            <a href="assets/site-p3.webp"><img src="assets/site-p3.webp" width="1013" height="548" loading="lazy" alt="Website banner: photo of Lycée Sainte-Geneviève, navigation menu and the title “La vie à Ginette en P3”."></a>
           </div>
         </article>
       </li>
@@ -356,14 +220,14 @@
         <span class="year">2021</span>
         <article class="project has-media compact">
           <div>
-            <p class="meta"><span class="when">2021</span><span>Projet personnel</span></p>
-            <h3>Serveur de chat chiffré</h3>
-            <p class="desc">Serveur de messagerie en ligne en Python, avec interface graphique et chiffrement RSA des échanges. Un premier projet pour comprendre le fonctionnement des réseaux et les enjeux de la cryptographie.</p>
-            <ul class="tags"><li>Python</li><li>RSA</li><li>Réseau client / serveur</li><li>Interface graphique</li></ul>
-            <div class="footnotes"><span class="no-ai">Réalisé sans IA générative</span></div>
+            <p class="meta"><span class="when">2021</span><span>Personal project</span></p>
+            <h3>Encrypted chat server</h3>
+            <p class="desc">Online messaging server in Python, with a graphical interface and RSA-encrypted exchanges. An early project to understand how networks work and what is at stake in cryptography.</p>
+            <ul class="tags"><li>Python</li><li>RSA</li><li>Client / server networking</li><li>GUI</li></ul>
+            <div class="footnotes"><span class="no-ai">Built without generative AI</span></div>
           </div>
           <div class="media row">
-            <a href="assets/chat-serveur.webp"><img src="assets/chat-serveur.webp" width="728" height="1107" loading="lazy" alt="Interface du chat : boutons de salons Perso et Général, et messages échangés entre plusieurs utilisateurs."></a>
+            <a href="assets/chat-serveur.webp"><img src="assets/chat-serveur.webp" width="728" height="930" loading="lazy" alt="The chat running on a computer screen: Perso and General rooms, list of online users and exchanged messages."></a>
           </div>
         </article>
       </li>
@@ -372,19 +236,19 @@
         <span class="year">2020</span>
         <article class="project has-media compact">
           <div>
-            <p class="meta"><span class="when">2020</span><span>Projet personnel</span></p>
-            <h3>Premiers jeux en Python : échecs et 2048</h3>
-            <p class="desc">Mes premiers projets de programmation, avec Pygame : un jeu d'échecs à deux joueurs (pendule, coups possibles, roque, promotion) et un 2048 avec sauvegarde du meilleur score. Également un morpion et un snake.</p>
+            <p class="meta"><span class="when">2020</span><span>Personal project</span></p>
+            <h3>First Python games: chess and 2048</h3>
+            <p class="desc">My first programming projects, built with Pygame: a two-player chess game (clock, move hints, castling, promotion) and a 2048 that saves the best score. Also a tic-tac-toe and a snake.</p>
             <ul class="tags"><li>Python</li><li>Pygame</li></ul>
             <div class="footnotes">
-              <span class="no-ai">Réalisé sans IA générative</span>
-              <a class="repo" href="https://github.com/Cialson/Chess-Game-by-Cialson" rel="noopener">Échecs →</a>
+              <span class="no-ai">Built without generative AI</span>
+              <a class="repo" href="https://github.com/Cialson/Chess-Game-by-Cialson" rel="noopener">Chess →</a>
               <a class="repo" href="https://github.com/Cialson/2048-Game-by-Cialson" rel="noopener">2048 →</a>
             </div>
           </div>
           <div class="media stack">
-            <a href="assets/jeu-echecs.webp"><img src="assets/jeu-echecs.webp" width="1200" height="912" loading="lazy" alt="Partie d'échecs en cours : plateau horizontal, pendules des deux joueurs et coups possibles signalés par des cercles verts."></a>
-            <a href="assets/jeu-2048.webp"><img src="assets/jeu-2048.webp" width="1061" height="776" loading="lazy" alt="Partie de 2048 : grille 4 × 4 de tuiles colorées, score et meilleur score."></a>
+            <a href="assets/jeu-echecs.webp"><img src="assets/jeu-echecs.webp" width="1200" height="912" loading="lazy" alt="Chess game in progress: horizontal board, both players' clocks and possible moves marked with green circles."></a>
+            <a href="assets/jeu-2048.webp"><img src="assets/jeu-2048.webp" width="1061" height="776" loading="lazy" alt="2048 game: 4 × 4 grid of coloured tiles, score and best score."></a>
           </div>
         </article>
       </li>
@@ -399,14 +263,11 @@
   </div>
 </footer>
 
-<script>
-  document.getElementById("theme-toggle").addEventListener("click", function () {
-    var root = document.documentElement;
-    var current = root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    var next = current === "dark" ? "light" : "dark";
-    root.dataset.theme = next;
-    try { localStorage.setItem("theme", next); } catch (e) {}
-  });
-</script>
+<dialog class="lightbox" id="lightbox" aria-label="Enlarged image">
+  <button class="lightbox-close" type="button" aria-label="Close">×</button>
+  <img alt="">
+</dialog>
+
+<script src="assets/site.js"></script>
 </body>
 </html>
